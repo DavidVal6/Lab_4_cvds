@@ -1,5 +1,4 @@
 package hangman.model;
-
-public interface GameScore {
-    int calculateScore(int correctCount, int incorrectCount);
+public interface GameScore{
+    int calculateScore(int correctCount, int incorrectCount)throws ScoreException;
 }

@@ -2,14 +2,18 @@ package hangman.model;
 
 public class PowerScore implements GameScore{
     /*
-     * Every correct letter is plus 5 ^correctCount to the points and every incorrect letter is minus eight
+     * @throws Exceptions for bad values
+     *Every correct letter is plus 5 ^correctCount to the points and every incorrect letter is minus eight
      *@pre The base Points is 0 
      *@param this are the correct letters selected and the incorrect ones
-     *@return the calculate of how many points we got 
+     *@return the calculate of how many points we got
      */
-    public int calculateScore(int correctCount, int incorrectCount){
+    public int calculateScore(int correctCount, int incorrectCount)throws ScoreException{
+        if(correctCount < 0 || incorrectCount < 0){
+            throw new ScoreException(ScoreException.BAD_PARAMETERS);
+        }
         int base = 0;
-        double corrects = Math.pow((double)correctCount, (double)5);
+        double corrects = Math.pow((double)5,(double)correctCount);
         int incorrect = 8 * incorrectCount;
         double total = (double)base + corrects - (double)incorrect;
         if(total > 0 && total < 500){
