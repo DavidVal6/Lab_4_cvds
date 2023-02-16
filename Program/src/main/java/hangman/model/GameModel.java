@@ -17,6 +17,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+import com.google.inject.Inject;
+
 
 public class GameModel {
     private int incorrectCount;
@@ -24,6 +26,8 @@ public class GameModel {
     private LocalDateTime dateTime;
     private int gameScore;
     private int[] lettersUsed;
+    @Inject
+    private GameScore calculator;
     
     
     private HangmanDictionary dictionary;
@@ -77,6 +81,11 @@ public class GameModel {
             gameScore -= 10;
         } else {
             correctCount += positions.size();
+        }
+        try{
+            gameScore = calculator.calculateScore(correctCount,incorrectCount);
+        }catch(ScoreException e){
+            e.getMessage();
         }
         return positions;
         
