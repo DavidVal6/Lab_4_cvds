@@ -4,6 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import org.junit.Assert;
 import org.junit.Test;
+/*
+ * Test for main Score class
+ */
 public class GameScoreTest {
     @Test
     public void ShouldMakeaOriginalCorrectCaseOnlyCorrectLetter(){
