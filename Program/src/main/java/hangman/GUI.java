@@ -29,6 +29,7 @@ public class GUI {
     public static final String CREDITS_KEY = "creditsscreen";
     public static final String GAME_KEY = "gamescreen";
     public static final String GAME_OVER_KEY = "gameoverscreen";
+    public GameScore gameScore;
 
     private Language language;
     private HangmanDictionary dictionary;
@@ -52,10 +53,11 @@ public class GUI {
 
     @Inject
     // Use Guice constructor
-    public GUI(Language language, HangmanDictionary dictionary, HangmanPanel hangmanPanel){
+    public GUI(GameScore gameScore,Language language, HangmanDictionary dictionary, HangmanPanel hangmanPanel){
         this.language = language;
         this.dictionary= dictionary;
         this.hangmanPanel = hangmanPanel;
+        this.gameScore = gameScore;
     }
 
     //method: setup
@@ -79,7 +81,7 @@ public class GUI {
                 mainFrameController
         );
 
-        GameModel gameModel = new GameModel(dictionary);
+        GameModel gameModel = new GameModel(gameScore,dictionary);
         gameController = new GameController(
                 new GamePanel(gameModel.getCharacterSet(), hangmanPanel, language),
                 gameModel,

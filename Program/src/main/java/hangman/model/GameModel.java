@@ -38,7 +38,7 @@ public class GameModel {
     
     
    
-    public GameModel(HangmanDictionary dictionary){
+    public GameModel(GameScore score,HangmanDictionary dictionary){
         //this.dictionary = new EnglishDictionaryDataSource();
         this.dictionary=dictionary;
         randomWord = selectRandomWord();
@@ -46,7 +46,7 @@ public class GameModel {
         incorrectCount = 0;
         correctCount = 0;
         gameScore = 100;
-        
+        this.calculator = score;
     }
     
     //method: reset
@@ -78,12 +78,11 @@ public class GameModel {
         }
         if(positions.size() == 0){
             incorrectCount++;
-            gameScore -= 10;
         } else {
             correctCount += positions.size();
         }
         try{
-            gameScore = calculator.calculateScore(correctCount,incorrectCount);
+            gameScore = calculator.calculateScore(correctCount, incorrectCount);
         }catch(ScoreException e){
             e.getMessage();
         }
